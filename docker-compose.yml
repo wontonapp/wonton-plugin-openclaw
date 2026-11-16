@@ -4,7 +4,7 @@
 # 模型默认走模型网关（magpie）；网关没接上时保留默认入口，不回退到其他服务商。
 services:
   init:
-    image: ghcr.io/openclaw/openclaw:2026.11.3@sha256:e73f689d663567f0fe3c5a85c54beb3e102dc21f0814bf375e9039ee2d2df51b
+    image: ghcr.io/openclaw/openclaw:2026.11.4@sha256:f019ffc78c8866dc38c5e965e748a474989c0bdd132ed307a87ae606d829bd26
     # npm 插件安装会对受管文件执行 fchmod；init 只在容器内以 root 完成安装和权限交接，gateway 仍以主人 uid 运行。
     user: "0:0"
     entrypoint: ["/bin/sh", "/seed/init.sh"]
@@ -41,7 +41,7 @@ services:
     restart: "no"
 
   gateway:
-    image: ghcr.io/openclaw/openclaw:2026.11.3@sha256:e73f689d663567f0fe3c5a85c54beb3e102dc21f0814bf375e9039ee2d2df51b
+    image: ghcr.io/openclaw/openclaw:2026.11.4@sha256:f019ffc78c8866dc38c5e965e748a474989c0bdd132ed307a87ae606d829bd26
     user: "${PUID}:${PGID}"
     depends_on:
       init:
